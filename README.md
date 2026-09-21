@@ -21,8 +21,10 @@ For a detailed explanation of how the modules work, see the comments in the code
 ## Output examples
 
 ![alt text](https://github.com/AndMarchese/Instant-frequency-in-batches/blob/main/overlap_length.png)
+
 As an example of the possible output of the code, figure “overlap_length.png” shows the calculated instantaneous frequency for different overlap lengths while keeping the batch size constant. We can see that for all the chosen overlap sizes, the curves describe well the expected decrease in frequency. For small overlap sizes (e.g. blue curve), the calculated frequency appears to be quite imprecise at the edges of the batches. This occurs because the reading of the frequency with the Hilbert transform does not perform well at the edges of the array, and a small overlap size does not effectively eliminate the most problematic part. On the other hand, at big overlap lengths (e.g. red curve) the error is reduced because with a larger overlap, we get rid of a larger portion of the edge of the array.
 ![alt text](https://github.com/AndMarchese/Instant-frequency-in-batches/blob/main/output_batch_length.png)
+
 To give a further impression of the output, we can also see in figure “output_batch_length.png” the comparison of the output for different batch lenghts while keeping the overlap size constant. We can see that for small batches (e.g. blue curve), the Hilbert transform performs poorly, while it improves for larger batches (green curve).
 For both plots, the output curves have different size. This occurs because the module rejects the batches that would have smaller size as being at the end of the file, and rejects the overlap regions at the beginning and at the end of the file.  
 Ideally, the best reading of the instantaneous frequency for large files is obtained by setting the batch as large as permitted by the GPU memory, and the overlap as large as possible. However, in terms of performances a larger overlap means more batches to be calculated, which increases the calculation time.   
